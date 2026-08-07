@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vryanta | Next-Gen Youth Job & Hiring Portal</title>
+    <!-- Logo Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><path d='M15 25 L45 80 L60 80 L30 25 Z M35 25 L65 80 L80 80 L50 25 Z' fill='%233b82f6'/></svg>">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <canvas id="bg-grid"></canvas>
+
+    <div class="layout-container">
+        <!-- Navigation Bar with Vryanta Branding -->
+        <nav class="nav-blur">
+            <div class="brand">
+                <!-- Vryanta Geometric "V" Logo SVG -->
+                <svg class="vryanta-logo" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M15 25 L45 80 L60 80 L30 25 Z" fill="#38bdf8"/>
+                    <path d="M35 25 L65 80 L80 80 L50 25 Z" fill="#2563eb"/>
+                </svg>
+                <span>Vryanta</span>
+            </div>
+            
+            <div class="tab-switcher">
+                <button class="tab-btn active" id="tab-candidate" onclick="switchTab('candidate')">Candidate View</button>
+                <button class="tab-btn" id="tab-employer" onclick="switchTab('employer')">Employer View</button>
+            </div>
+
+            <div class="status-pill">
+                <span class="pulse-dot"></span>
+                <span id="profile-checkouts">19 Recruiter Views Today</span>
+            </div>
+        </nav>
+
+        <!-- CANDIDATE VIEW -->
+        <div id="candidate-view" class="view-panel active">
+            <section class="hero">
+                <div class="badge">🚀 Powered by Vryanta Job Matching</div>
+                <h1>Empowering Indian Youth with <span class="text-gradient">Verified Jobs</span></h1>
+                <p class="subtitle">Connecting unseen graduates, diploma holders & skilled candidates with top local recruiters.</p>
+                
+                <div class="filter-wrapper">
+                    <div class="filter-group">
+                        <label>Filter by Qualification</label>
+                        <select id="qual-filter" onchange="filterJobs()">
+                            <option value="all">⚡ All Qualifications</option>
+                            <option value="12th">10th / 12th Pass</option>
+                            <option value="diploma">ITI / Vocational / Diploma</option>
+                            <option value="btech">B.Tech / B.E Graduate</option>
+                            <option value="degree">B.Sc / B.Com / B.A Graduate</option>
+                        </select>
+                    </div>
+                </div>
+            </section>
+
+            <section class="job-feed">
+                <h2>Live Vacancies (<span id="job-count">0</span>)</h2>
+                <div id="job-container" class="grid-jobs"></div>
+            </section>
+        </div>
+
+        <!-- EMPLOYER VIEW -->
+        <div id="employer-view" class="view-panel">
+            <section class="hero">
+                <div class="badge">🏢 Vryanta Recruiter Suite</div>
+                <h1>Hire Skilled <span class="text-gradient">Youth Candidates</span></h1>
+                <p class="subtitle">Post local jobs directly & dispatch instant district-wide WhatsApp / SMS alerts.</p>
+            </section>
+
+            <div class="employer-grid">
+                <!-- Post Job Form -->
+                <div class="glass-card form-card">
+                    <h3>➕ Post Opening & Notify District</h3>
+                    <form id="post-job-form" onsubmit="handleJobPost(event)">
+                        <input type="text" id="job-title" placeholder="Job Title (e.g. CNC Operator)" required>
+                        <input type="text" id="company-name" placeholder="Company Name" required>
+                        <select id="job-qual" required>
+                            <option value="">Required Qualification</option>
+                            <option value="12th">10th / 12th Pass</option>
+                            <option value="diploma">ITI / Vocational / Diploma</option>
+                            <option value="btech">B.Tech / B.E Graduate</option>
+                            <option value="degree">B.Sc / B.Com / B.A Graduate</option>
+                        </select>
+                        <input type="text" id="job-location" placeholder="City / District (e.g. Pune, MH)" required>
+                        <input type="text" id="job-salary" placeholder="Salary Offer (e.g. ₹20,000 / mo)" required>
+                        <button type="submit" class="btn-primary">Publish Opening & Send Alerts</button>
+                    </form>
+                </div>
+
+                <!-- Candidate Search Directory -->
+                <div class="glass-card directory-card">
+                    <h3>🔍 Search Vryanta Candidate Database</h3>
+                    <input type="text" id="candidate-search" placeholder="Search by city (e.g. Pune, Patna, Jaipur)..." oninput="searchCandidates()">
+                    <div id="candidate-list" class="candidate-feed"></div>
+                </div>
+            </div>
+        </div>
+
+        <footer class="footer">
+            <p>© 2026 Vryanta Tech Platform • Built for Indian Youth</p>
+        </footer>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
